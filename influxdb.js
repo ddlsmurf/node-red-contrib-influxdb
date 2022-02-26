@@ -132,6 +132,8 @@ module.exports = function (RED) {
                         for (const prop in tags) {
                             point.tag(prop, tags[prop]);
                         }
+                        if (element[2])
+                            point.timestamp(element[2]);
                         node.client.writePoint(point);
                     });
                 } else {
@@ -143,6 +145,8 @@ module.exports = function (RED) {
                     for (const prop in tags) {
                         point.tag(prop, tags[prop]);
                     }
+                    if (msg.payload[2])
+                        point.timestamp(msg.payload[2]);
                     node.client.writePoint(point)
                 }
             } else {
